@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - setup/repository
   workflow_dispatch:
 
 permissions:
@@ -33,6 +32,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Run lint
+        run: npm run lint:all
+
+      - name: Run typecheck
+        run: npm run typecheck
+
+      - name: Run format check
+        run: npm run format:check
+
       - name: Build
         run: npm run build
 
@@ -45,11 +53,11 @@ jobs:
           path: ./dist
 
   deploy:
+    needs: build
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    needs: build
-    runs-on: ubuntu-latest
 
     steps:
       - name: Deploy to GitHub Pages
