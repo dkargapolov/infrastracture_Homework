@@ -9,7 +9,9 @@
     "lint": "eslint",
     "lint:all": "eslint .",
     "preview": "vite preview",
-    "format": "prettier . --write",
+    "format": "prettier --write --ignore-unknown",
+    "format:check": "prettier --check --ignore-unknown .",
+    "format:all": "prettier --write --ignore-unknown .",
     "typecheck": "tsc -p tsconfig.app.json --noEmit",
     "check": "npm run lint && npm run typecheck",
     "prepare": "husky",
@@ -21,7 +23,7 @@
       "eslint"
     ],
     "*.{js,jsx,ts,tsx,json,css,md}": [
-      "prettier --write"
+      "prettier --write --ignore-unknown"
     ]
   },
   "dependencies": {
