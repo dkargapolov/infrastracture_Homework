@@ -9,6 +9,7 @@
     "lint": "eslint",
     "lint:all": "eslint .",
     "lint:file": "eslint",
+    "lint:file:fix": "eslint --fix",
     "preview": "vite preview",
     "format": "prettier --write --ignore-unknown",
     "format:check": "prettier --check --ignore-unknown .",
@@ -22,6 +23,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
+      "npm run lint:file:fix --",
       "npm run lint:file --"
     ],
     "*.{js,jsx,ts,tsx,json,css,md}": [
